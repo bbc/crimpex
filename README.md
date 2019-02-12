@@ -18,9 +18,9 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/crimpex](https://hexdocs.pm/crimpex).
 
-# Crimpua
+# El-Crimp
 
-[![Build Status](https://travis-ci.org/BBC-News/crimpua.svg?branch=master)](https://travis-ci.org/BBC-News/crimpua)
+[![Build Status](https://travis-ci.org/)](https://travis-ci.org/)
 
 Crimpex is an implementation of [Crimp](https://github.com/BBC-News/crimp) in Elixir.
 
@@ -33,7 +33,7 @@ Please see the [bbc-news/crimp](https://github.com/BBC-News/crimp) repo for more
 
 ## Usage
 
-```lua
+```elixir
 Crimpex.signature({a = {b = 1}}) -- prints "ac13c15d07e5fa3992fc6b15113db900"
 ```
 
