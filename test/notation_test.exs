@@ -35,4 +35,57 @@ defmodule NotationTest do
       assert Notation.notate([3, [4, 2], 1]) == "1N3N2N4NAA"
     end
   end
+
+  describe "acceptance tests" do
+    test "verify String handling" do
+      assert Notation.notate("abc") == "abcS"
+    end
+
+    test "verify integers handling" do
+      assert Notation.notate(1) == "1N"
+    end
+
+    test "verify floats handling" do
+      assert Notation.notate(1.2) == "1.2N"
+    end
+    test "verify Array handling" do
+      assert Notation.notate([1, "a", 3]) == "1N3NaSA"
+    end
+
+    test "verify Array sorting" do
+      assert Notation.notate([3, nil, 1, "1"]) == "_1N1S3NA"
+    end
+
+    test "verify Array sorting with capital letters" do
+      assert Notation.notate(["a", "A", "b", "B"]) == "ASBSaSbSA"
+    end
+
+    test "verify nested Arrays" do
+      assert Notation.notate(["a", 1, ["b", "2"]]) == "1N2SbSAaSA"
+    end
+
+    test "verify nested Arrays in another order" do
+      assert Notation.notate([["b", "2"], "a", 1]) == "1N2SbSAaSA"
+    end
+
+    test "verify hash like data structures" do
+      assert Notation.notate(%{"a" => 1}) == "1NaSAH"
+    end
+
+    test "verify nested hash" do
+      assert Notation.notate(%{"a" => %{"c" => nil, "2" => 2 }}) == "aS2S2NA_cSAHAH"
+    end
+
+    test "verify null values" do
+      assert Notation.notate(nil) == "_"
+    end
+
+    test "verify true boolean values" do
+      assert Notation.notate(true) == "trueB"
+    end
+
+    test "verify false boolean values" do
+      assert Notation.notate(false) == "falseB"
+    end
+  end
 end
