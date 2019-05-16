@@ -1,6 +1,21 @@
 # Crimpex
 Creating an md5 hash of a number, string, array, or hash in Elixir
 
+Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
+and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
+be found at [https://hexdocs.pm/crimpex](https://hexdocs.pm/crimpex).
+
+[![Build Status](https://travis-ci.org/)](https://travis-ci.org/)
+
+Crimpex is an implementation of [Crimp](https://github.com/BBC-News/crimp) in Elixir.
+
+Please see the [bbc-news/crimp](https://github.com/BBC-News/crimp) repo for more details.
+
+## Implementations
+
+[![Crimp Lua](https://img.shields.io/badge/Crimp-Lua-00007C.svg)](https://github.com/bbc-news/crimpua)
+[![Crimp Ruby](https://img.shields.io/badge/Crimp-Ruby-CC342D.svg)](https://github.com/bbc-news/crimp)
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
@@ -13,23 +28,6 @@ def deps do
   ]
 end
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/crimpex](https://hexdocs.pm/crimpex).
-
-# El-Crimp
-
-[![Build Status](https://travis-ci.org/)](https://travis-ci.org/)
-
-Crimpex is an implementation of [Crimp](https://github.com/BBC-News/crimp) in Elixir.
-
-Please see the [bbc-news/crimp](https://github.com/BBC-News/crimp) repo for more details.
-
-## Implementations
-
-[![Crimp Lua](https://img.shields.io/badge/Crimp-Lua-00007C.svg)](https://github.com/bbc-news/crimpua)
-[![Crimp Ruby](https://img.shields.io/badge/Crimp-Ruby-CC342D.svg)](https://github.com/bbc-news/crimp)
 
 ## Usage
 
@@ -91,3 +89,9 @@ For testing we use ExUnit built into Elixir itself
 ```sh
 mix test
 ```
+
+## Caveats
+
+Currently this implementation of Crimp does not cover the functionallity that the original project intended, there is an issue with the Notation of Nested Hashes/Maps meaning they get sorted seperately causing the Signature to be incorrect. We are working to fix this and hopefully will update the project soon with that functionality.
+
+The project has also not been pushed to Hex as of yet so will need to be added as a git dependency.
