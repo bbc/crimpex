@@ -24,7 +24,6 @@ defmodule Notation do
   defp sort_list(list) do
     list
     |> Enum.sort(&string_compare/2)
-    |> IO.inspect()
     |> Enum.map(&notate/1)
     |> to_string
   end
