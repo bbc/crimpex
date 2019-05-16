@@ -31,10 +31,10 @@ defmodule Notation do
   end
 
   defp tuple(map) do
-    tuple = []
-    for {k, v} <- map do
-      tuple ++ [to_string(k), v]
-    end
+    map
+    |> Enum.map(fn {k, v} ->
+      [to_string(k), v]
+    end)
   end
 
   defp string_compare(nil, _) do

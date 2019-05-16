@@ -1,4 +1,3 @@
-
 defmodule NotationTest do
   use ExUnit.Case
 
