@@ -15,13 +15,15 @@ defmodule Notation do
 
   def notate(data) when is_map(data), do: sort_map(data) <> "H"
 
+  def notate(data) when is_atom(data), do: Atom.to_string(data) |> notate()
+
   defp sort_list(list) do
     list
     |> Enum.sort(&string_compare/2)
     |> Enum.map(&notate/1)
     |> to_string
   end
-  
+
   defp sort_map(map) do
     map
     |> tuple()

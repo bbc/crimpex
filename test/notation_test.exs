@@ -33,6 +33,14 @@ defmodule NotationTest do
     test "when passed a nested list it will sort it" do
       assert Notation.notate([3, [4, 2], 1]) == "1N3N2N4NAA"
     end
+
+    test "atoms are treated as strings" do
+      assert Notation.notate(:a) == Notation.notate("a")
+    end
+
+    test "atoms are case sensitive" do
+      refute Notation.notate(:A) == Notation.notate("a")
+    end
   end
 
   describe "acceptance tests" do
