@@ -21,7 +21,7 @@ defmodule Notation do
     list
     |> Enum.sort(&string_compare/2)
     |> Enum.map(&notate/1)
-    |> to_string
+    |> :erlang.list_to_binary
   end
 
   defp sort_map(map) do
@@ -29,7 +29,7 @@ defmodule Notation do
     |> tuple()
     |> Enum.sort(&string_compare/2)
     |> Enum.map(&notate/1)
-    |> to_string
+    |> :erlang.list_to_binary
   end
 
   defp tuple(map) do

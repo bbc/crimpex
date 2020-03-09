@@ -26,6 +26,11 @@ defmodule NotationTest do
       assert Notation.notate(["c", "b", "a"]) == "aSbScSA"
     end
 
+    test "when passed an erlang binary in a list" do
+                                                     # a   S   b   S   �    S   A
+      assert Notation.notate(["a", "b", <<179>>]) == <<97, 83, 98, 83, 179, 83, 65>>
+    end
+
     test "when passed a map it returns the number with an H suffix" do
       assert Notation.notate(%{a: 1}) == "1NaSAH"
     end
@@ -79,6 +84,7 @@ defmodule NotationTest do
       assert Notation.notate(%{"a" => 1}) == "1NaSAH"
     end
 
+    #This fails on master!
     test "verify nested hash" do
       assert Notation.notate(%{"a" => %{"c" => nil, "2" => 2 }}) == "aS2S2NA_cSAHAH"
     end

@@ -51,6 +51,7 @@ defmodule CrimpexTest do
       assert Crimpex.signature(%{"a" => 1}) == "8cb44d69badda0f34b0bab6bb3e7fdbf"
     end
 
+    #This fails on master!
     test "verify nested hash" do
       assert Crimpex.signature(%{"a" => %{"c" => nil, "2" => 2 }}) == "bff3538075e4007c7679a7ba0d0a5f30"
     end
