@@ -7,7 +7,7 @@ be found at [https://hexdocs.pm/crimpex](https://hexdocs.pm/crimpex).
 
 [![Build Status](https://travis-ci.org/)](https://travis-ci.org/)
 
-Crimpex is an implementation of [Crimp](https://github.com/BBC-News/crimp) in Elixir.
+Crimpex is an implementation of [Crimp](https://github.com/BBC-News/crimp) in Elixir, however as of the initial 0.1 there is a known difference in the outputs between the original Ruby implementation and this Elixir implementation when using nested hash inputs.
 
 Please see the [bbc-news/crimp](https://github.com/BBC-News/crimp) repo for more details.
 
@@ -78,7 +78,11 @@ Notation.notate([ b: 3 ])
 
 ## Changelog
 
-### 1.0.0-0
+### 0.1.1
+
+Fix for mixed encodings of strings inside lists
+
+### 0.1.0
 
 Initial release.
 
