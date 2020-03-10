@@ -13,6 +13,10 @@ defmodule CrimpexTest do
     test "when given a single integer it returns the correct signature" do
       assert Crimpex.signature(1) == "594170053719896a11eb08ee513813d5"
     end
+
+    test "when passed an erlang binary in a list" do
+      assert Crimpex.signature(["a", "b", <<179>>]) == "aa31a432d46a6e85b37b442ffd44cf26"
+    end
   end
 
   describe "acceptance tests" do
