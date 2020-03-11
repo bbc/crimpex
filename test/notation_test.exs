@@ -84,12 +84,9 @@ defmodule NotationTest do
       assert Notation.notate(%{"a" => 1}) == "1NaSAH"
     end
 
-    # This fails on master!
-    # This acceptance test is taken from the original ruby implementation
-    # This test failing means this Elixir implementation does not completely match.
-#    test "verify nested hash" do
-#      assert Notation.notate(%{"a" => %{"c" => nil, "2" => 2 }}) == "aS2S2NA_cSAHAH"
-#    end
+    test "verify nested hash" do
+     assert Notation.notate(%{"a" => %{"c" => nil, "2" => 2 }}) == "aS2S2NA_cSAHAH"
+    end
 
     test "verify null values" do
       assert Notation.notate(nil) == "_"

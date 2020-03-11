@@ -13,7 +13,12 @@ defmodule Notation do
 
   def notate(data) when is_list(data), do: sort_list(data) <> "A"
 
-  def notate(data) when is_map(data), do: sort_map(data) <> "H"
+  def notate(data) when is_map(data) do
+    [Enum.map(data, &notate(&1)) | "H"] |> IO.iodata_to_binary()
+  end
+
+  def notate({k, v}) when is_map(v), do: [notate(k), notate(v), "A"]
+  def notate({k, v}), do: notate([k, v])
 
   def notate(data) when is_atom(data), do: Atom.to_string(data) |> notate()
 
@@ -22,21 +27,6 @@ defmodule Notation do
     |> Enum.sort(&string_compare/2)
     |> Enum.map(&notate/1)
     |> :erlang.list_to_binary
-  end
-
-  defp sort_map(map) do
-    map
-    |> tuple()
-    |> Enum.sort(&string_compare/2)
-    |> Enum.map(&notate/1)
-    |> :erlang.list_to_binary
-  end
-
-  defp tuple(map) do
-    map
-    |> Enum.map(fn {k, v} ->
-      [to_string(k), v]
-    end)
   end
 
   defp string_compare(nil, _) do
@@ -55,13 +45,5 @@ defmodule Notation do
     a <= to_string(b)
   end
 
-  defp string_compare(a, b) do
-    compare_objects(a) <= compare_objects(b)
-  end
-
-  defp compare_objects(obj) when is_list(obj), do: Enum.sort(obj, &string_compare/2)
-
-  defp compare_objects(obj) when is_map(obj), do: Enum.sort(tuple(obj), &string_compare/2)
-
-  defp compare_objects(obj) when not is_list(obj) or is_map(obj), do: obj
+  defp string_compare(a, b), do: a < b
 end
