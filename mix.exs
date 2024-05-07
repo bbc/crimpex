@@ -4,8 +4,8 @@ defmodule Crimpex.MixProject do
   def project do
     [
       app: :crimpex,
-      version: "0.1.1",
-      elixir: "~> 1.8",
+      version: "0.2.0",
+      elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]

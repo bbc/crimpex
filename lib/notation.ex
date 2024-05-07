@@ -14,7 +14,13 @@ defmodule Notation do
   def notate(data) when is_list(data), do: sort_list(data) <> "A"
 
   def notate(data) when is_map(data) do
-    [Enum.map(data, &notate(&1)) | "H"] |> IO.iodata_to_binary()
+    [
+      :maps.to_list(data)
+      |> Enum.sort()
+      |> Enum.map(&notate/1)
+      | "H"
+    ]
+    |> IO.iodata_to_binary()
   end
 
   def notate({k, v}) when is_map(v), do: [notate(k), notate(v), "A"]
@@ -26,7 +32,7 @@ defmodule Notation do
     list
     |> Enum.sort(&string_compare/2)
     |> Enum.map(&notate/1)
-    |> :erlang.list_to_binary
+    |> :erlang.list_to_binary()
   end
 
   defp string_compare(nil, _) do
@@ -43,6 +49,10 @@ defmodule Notation do
 
   defp string_compare(a, b) when is_bitstring(a) and is_number(b) do
     a <= to_string(b)
+  end
+
+  defp string_compare(a, b) when is_atom(a) do
+    to_string(a) <= b
   end
 
   defp string_compare(a, b), do: a < b
