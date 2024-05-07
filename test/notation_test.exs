@@ -35,6 +35,22 @@ defmodule NotationTest do
       assert Notation.notate(%{a: 1}) == "1NaSAH"
     end
 
+    test "when passed a map with multiple unsorted keys it returns with an H suffix and sorted" do
+      assert Notation.notate(%{a: 1, d: 3, b: 2}) == "1NaSA2NbSA3NdSAH"
+    end
+
+    test "when passed a nested map with multiple unsorted keys it returns with an H suffix and sorted for all levels" do
+      assert Notation.notate(%{a: 1, d: %{e: 1, g: 2, f: 3}, b: 2}) == "1NaSA2NbSAdS1NeSA3NfSA2NgSAHAH"
+    end
+
+    test "when passed a map with nested lists and maps" do
+      assert Notation.notate(%{a: [1, 2], b: %{c: "d"}}) == "1N2NAaSAbScSdSAHAH"
+    end
+
+    test "when passed a list of maps" do
+      assert Notation.notate([%{a: 1}, %{b: 2}]) == "1NaSAH2NbSAHA"
+    end
+
     test "when passed a nested list it will sort it" do
       assert Notation.notate([3, [4, 2], 1]) == "1N3N2N4NAA"
     end
