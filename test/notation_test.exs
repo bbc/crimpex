@@ -47,6 +47,10 @@ defmodule NotationTest do
       assert Notation.notate(%{a: [1, 2], b: %{c: "d"}}) == "1N2NAaSAbScSdSAHAH"
     end
 
+    test "when passed a map with a non-list value for atom keys" do
+      assert Notation.notate(%{c?: false, method: "GET", path: "/"}) == "c?SfalseBAmethodSGETSApathS/SAH"
+    end
+
     test "when passed a list of maps" do
       assert Notation.notate([%{a: 1}, %{b: 2}]) == "1NaSAH2NbSAHA"
     end
