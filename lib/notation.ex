@@ -51,7 +51,7 @@ defmodule Notation do
     a <= to_string(b)
   end
 
-  defp string_compare(a, b) when is_atom(a) do
+  defp string_compare(a, b) when is_atom(a) and is_list(b) do
     to_string(a) <= b
   end
 
